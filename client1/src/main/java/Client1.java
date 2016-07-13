@@ -17,7 +17,7 @@ public class Client1 {
         String line;
         Socket s4 = new Socket("10.108.49.111", 3004); //connect client4
         if(s.isConnected()) {
-            System.out.print("client1 and server connected.\r\n");
+            System.out.print("server and client1 connected.\r\n");
         }
         if (s4.isConnected()) {
             System.out.print("client1 and client4 connected.\r\n");

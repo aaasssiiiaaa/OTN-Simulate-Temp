@@ -23,10 +23,13 @@ public class Client {
         ServerSocket ss = new ServerSocket(3000);
         Socket s = ss.accept();         //accept返回值就是一个socket
         String line;
-        if(s.isConnected()) {
-            System.out.print("client0 and server connected.\r\n");
-        }
         Socket s3 = new Socket("10.108.48.144", 3003); //连client3
+        if(s.isConnected()) {
+            System.out.print("server and client0 connected.\r\n");
+        }
+        if (s3.isConnected()) {
+            System.out.print("client0 and client3 is connected.\r\n");
+        }
         while (true){
             BufferedReader br = new BufferedReader(new InputStreamReader(s.getInputStream())); //读取输入socket的内容,InputStreamReader是字符流,InputStream是字节流,该句括号作用是转换
             line = br.readLine();
@@ -34,9 +37,6 @@ public class Client {
                 System.out.println(line);
                 //睡眠0.3秒后发送给下一个功能
 //                Thread.sleep(100);
-                if (s3.isConnected()) {
-                    System.out.print("client0 and client3 is connected.\r\n");
-                }
                 PrintStream ps1 = new PrintStream(s3.getOutputStream());
                 ps1.println(line);
             }

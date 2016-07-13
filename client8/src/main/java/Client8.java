@@ -6,22 +6,21 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 /**
- * Created by asia on 2016/7/5.
- * 需求：功能二的第三个虚拟机客户端
+ * Created by template on 16-7-13.
+ *
  */
-public class Client5 {
+public class Client8 {
     public static void main(String[] args) throws IOException, InterruptedException {
-        //监听端口3005，即监听client2端
-        ServerSocket ss = new ServerSocket(3005);
+        //监听端口3008，即监听client5端
+        ServerSocket ss = new ServerSocket(3008);
         Socket s = ss.accept();         //accept返回值就是一个socket
         String line;
-        //Socket s8 = new Socket("10.108.70.140", 3011);
-        Socket s8 = new Socket("10.108.48.40", 3008);
+        Socket s9 = new Socket("10.108.70.140", 3011);
         if(s.isConnected()) {
-            System.out.print("client2 and client5 connected.\r\n");
-        }
-        if (s8.isConnected()) {
             System.out.print("client5 and client8 connected.\r\n");
+        }
+        if (s9.isConnected()) {
+            System.out.print("client8 and server connected.\r\n");
         }
         while (true) {
             BufferedReader br = new BufferedReader(new InputStreamReader(s.getInputStream())); //读取输入socket的内容,buffer是字符流,stream是字节流,该句括号作用是转换
@@ -30,9 +29,9 @@ public class Client5 {
                 System.out.println(line);
                 //Thread.sleep(120);
                 //睡眠0.2秒后发送给下一个功能
-                if (s8.isConnected()) {
-                    PrintStream ps1 = new PrintStream(s8.getOutputStream());
-                    ps1.println(line);    //TODO 输出是字节流，line是字符流，估计这会出错
+                if (s9.isConnected()) {
+                    PrintStream ps1 = new PrintStream(s9.getOutputStream());
+                    ps1.println(line);
                 }
             }
         }

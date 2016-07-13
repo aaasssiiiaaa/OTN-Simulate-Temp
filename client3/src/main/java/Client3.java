@@ -11,15 +11,15 @@ public class Client3 {
     public static void main(String[] args) throws IOException, InterruptedException {
         //监听端口3003，即监听client0端
         ServerSocket ss = new ServerSocket(3003);
-        //ServerSocket ss = new ServerSocket(3000);
         Socket s = ss.accept();         //accept返回值就是一个socket
         String line;
-        Socket s6 = new Socket("10.108.70.140", 3009);//TODO 没写下个功能的地址
+        //Socket s6 = new Socket("10.108.70.140", 3009);
+        Socket s6 = new Socket("10.108.49.3", 3006);
         if(s.isConnected()) {
-            System.out.print("client3 and client 0 connected.\r\n");
+            System.out.print("client0 and client3 connected.\r\n");
         }
         if (s6.isConnected()) {
-            System.out.print("client3 and server connected.\r\n");
+            System.out.print("client3 and client6 connected.\r\n");
         }
         while (true){
 //          BufferedReader br = new BufferedReader(new InputStreamReader(s.getInputStream())); //读取输入socket的内容,buffer是字符流,stream是字节流,该句括号作用是转换

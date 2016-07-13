@@ -6,21 +6,21 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 /**
- * Created by asia on 2016/7/4.
- * 需求：功能一的第三个虚拟机客户端
+ * Created by template on 16-7-13.
+ *
  */
-public class Client2 {
+public class Client7 {
     public static void main(String[] args) throws IOException, InterruptedException {
-        //监听端口3000，即监听server端
-        ServerSocket ss = new ServerSocket(3000);
+        //监听端口3007，即监听client4端
+        ServerSocket ss = new ServerSocket(3007);
         Socket s = ss.accept();         //accept返回值就是一个socket
         String line;
-        Socket s5 = new Socket("10.108.50.91", 3005); //connect client5
+        Socket s9 = new Socket("10.108.70.140", 3010); //connect server
         if(s.isConnected()) {
-            System.out.print("server and client2 connected.\r\n");
+            System.out.print("client4 and client7 connected.\r\n");
         }
-        if (s5.isConnected()) {
-            System.out.print("client2 and client5 connected.\r\n");
+        if (s9.isConnected()) {
+            System.out.print("client7 and server connected.\r\n");
         }
         while (true){
             BufferedReader br = new BufferedReader(new InputStreamReader(s.getInputStream())); //读取输入socket的内容,buffer是字符流,stream是字节流,该句括号作用是转换
@@ -29,8 +29,8 @@ public class Client2 {
                 System.out.println(line);
                 //睡眠0.3秒后发送给下一个功能
                 //Thread.sleep(100);
-                if (s5.isConnected()) {
-                    PrintStream ps1 = new PrintStream(s5.getOutputStream());
+                if (s9.isConnected()) {
+                    PrintStream ps1 = new PrintStream(s9.getOutputStream());
                     ps1.println(line);
                 }
             }

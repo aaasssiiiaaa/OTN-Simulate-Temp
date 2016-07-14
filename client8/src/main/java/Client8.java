@@ -27,11 +27,12 @@ public class Client8 {
             line = br.readLine();
             if (line != null &&!line.equals("null")) {
                 System.out.println(line);
-                //Thread.sleep(120);
+                Thread.sleep(100);
                 //睡眠0.2秒后发送给下一个功能
                 if (s9.isConnected()) {
                     PrintStream ps1 = new PrintStream(s9.getOutputStream());
                     ps1.println(line);
+                    ps1.flush();
                 }
             }
         }

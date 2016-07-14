@@ -28,11 +28,12 @@ public class Client5 {
             line = br.readLine();
             if (line != null &&!line.equals("null")) {
                 System.out.println(line);
-                //Thread.sleep(120);
+                Thread.sleep(200);
                 //睡眠0.2秒后发送给下一个功能
                 if (s8.isConnected()) {
                     PrintStream ps1 = new PrintStream(s8.getOutputStream());
-                    ps1.println(line);    //TODO 输出是字节流，line是字符流，估计这会出错
+                    ps1.println(line);   
+                    ps1.flush();
                 }
             }
         }

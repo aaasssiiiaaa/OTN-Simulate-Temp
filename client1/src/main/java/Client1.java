@@ -28,10 +28,11 @@ public class Client1 {
             if (line != null && !line.equals("mull")) {
                 System.out.println(line);
                 //睡眠0.3秒后发送给下一个功能
-                //Thread.sleep(100);
+                Thread.sleep(300);
                 if(s4.isConnected()) {
                     PrintStream ps1 = new PrintStream(s4.getOutputStream());
                     ps1.println(line);
+                    ps1.flush();
                 }
             }
         }

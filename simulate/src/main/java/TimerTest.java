@@ -22,7 +22,7 @@ public class TimerTest {
     {
         Timer t = new Timer("hehe");
         TimerTaskCount ttc = new TimerTaskCount(t);  //循环执行发送任务
-        t.schedule(ttc, 0, 1000);  //TODO 设成0.5秒也可
+        t.schedule(ttc, 0, 667);  //TODO 设成0.5秒也可
     }
     //每隔一秒执行的任务task
     class TimerTaskCount extends TimerTask {
@@ -39,13 +39,14 @@ public class TimerTest {
             }
             if (ps != null) {
                 ps.println(data[countData]);
+                ps.flush();
             }
             countData++;    //数据发送的段数
             countSocket++;  //连接的客户端数（3个）
-            if (countSocket>=3){
-                countSocket=countSocket-3;  //从第4个数据开始重新发给第一个client
+            if (countSocket >= 3) {
+                countSocket = countSocket - 3;  //从第4个数据开始重新发给第一个client
             }
-            if (countData >= 6) {       //TODO count加到6会超出范围，怎么停止？
+            if (countData >= 15) {
                 ps.close();
                 try {                 //关闭流s的话会一直传送null，一直！不关的话会出现连接异常
                     s[0].close();

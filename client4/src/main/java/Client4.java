@@ -21,7 +21,7 @@ public class Client4 {
             System.out.print("client1 and client4 connected.\r\n");
         }
         if (s7.isConnected()) {
-            System.out.print("client4 and client7 connected.\r\n");//TODO remember to change
+            System.out.print("client4 and client7 connected.\r\n");
         }
         while (true){
             BufferedReader br = new BufferedReader(new InputStreamReader(s.getInputStream())); //读取输入socket的内容,buffer是字符流,stream是字节流,该句括号作用是转换
@@ -29,10 +29,11 @@ public class Client4 {
             if (line != null &&!line.equals("null")) {
                 System.out.println(line);
                 //睡眠0.2秒后发送给下一个功能
-                //Thread.sleep(120);
+                Thread.sleep(200);
                 if (s7.isConnected()) {
                     PrintStream ps1 = new PrintStream(s7.getOutputStream());
-                    ps1.println(line);    //TODO 输出是字节流，line是字符流，估计这会出错
+                    ps1.println(line);
+                    ps1.flush();
                 }
             }
         }

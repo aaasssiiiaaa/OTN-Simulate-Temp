@@ -30,10 +30,11 @@ public class Client3 {
             if (line != null &&!line.equals("null")) {
                 System.out.println(line);
                 //睡眠0.2秒后发送给下一个功能
-//                Thread.sleep(120);
+                Thread.sleep(200);
                 if (s6.isConnected()) {
                     PrintStream ps1 = new PrintStream(s6.getOutputStream());
                     ps1.println(line);
+                    ps1.flush();
 
                 }
             }
